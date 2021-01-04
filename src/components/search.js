@@ -1,13 +1,68 @@
 import React from 'react';
 
 
-export class Search extends React.Component{
-    render(){
+export class Search extends React.Component {
 
-        return(
-            <div>
-                <h1>The Archive</h1>
-                <h2>this is the search component</h2>
+    constructor() {
+        super(); // envokes constructor of parent class (react.component)
+
+        this.onSubmit = this.onSubmit.bind(this); // events must be binded
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeArtist = this.onChangeArtist.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
+
+        this.state = {
+            name: '',
+            artist: '',
+            image: '',
+            url: ''
+        }
+    }
+
+    onChangeName(e) { // called when value of input changes
+        this.setState({
+            name: e.target.value
+        });
+    }
+
+    onChangeArtist(e){ // envoke method
+        this.setState({
+            artist: e.target.value
+        });
+    }
+
+    onChangeImage(e){ // envoke method
+        this.setState({
+            image: e.target.value
+        });
+    }
+
+    onSubmit(e) { // method called from form when form is submitted
+        e.preventDefault(); // prevents button from submitting repeatedly
+        alert("Album: " + this.state.name + " " + this.state.artist + " " + this.state.image);
+    }
+
+    render() {
+
+        return (
+            <div className='App'>
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                        <label>Album Name: </label>
+                        <input type='text' className='form-control' value={this.state.name} onChange={this.onChangeName}></input>
+                    </div>
+                    <div className="form-group">
+                        <label>Artist: </label>
+                        <input type='text' className='form-control' value={this.state.artist} onChange={this.onChangeArtist}></input>
+                    </div>
+                    <div className='form-group'>
+                        <label>Album Image: </label>
+                        <textarea type='text' className='form-control' value={this.state.image} onChange={this.onChangeImage}></textarea>
+                    </div>
+                    <div className="form-group">
+                        <input type='Submit' value='Add Album' className='btn btn-primary'></input>
+                    </div>
+                </form>
             </div>
         );
     }
