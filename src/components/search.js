@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios';
 
 export class Search extends React.Component {
 
@@ -40,6 +40,20 @@ export class Search extends React.Component {
     onSubmit(e) { // method called from form when form is submitted
         e.preventDefault(); // prevents button from submitting repeatedly
         alert("Album: " + this.state.name + " " + this.state.artist + " " + this.state.image);
+
+        const newAlbum = { // objects
+            name: this.state.name,
+            artist: this.state.artist,
+            image: this.state.image
+        }
+        
+        axios.post('http://localhost:4000/api/albums', newAlbum) //Post request from current URL & returns promise (asynchronous)
+        .then((res)=>{
+            console.log(res)
+        })
+        .catch((err)=>{
+            console.log(err);
+        });
     }
 
     render() {

@@ -10,9 +10,9 @@ export class Library extends React.Component {
     };
 
     componentDidMount() { // method is called every time component is mounted
-        axios.get('https://jsonblob.com/api/jsonblob/8200c909-4ea2-11eb-8fa3-d386f6f97f2c') // retrieve info from URL
+        axios.get('http://localhost:4000/api/albums') // retrieve info from URL
             .then((response) => {
-                this.setState({ albums: response.data.Search }) // updates array in state (data from URL)
+                this.setState({ albums: response.data.albums }) // updates array in state (data from URL)
             }) // successful promise
             .catch((error) => {
                 console.log(error)
