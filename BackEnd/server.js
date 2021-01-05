@@ -24,14 +24,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const myConnectionString = 'mongodb+srv://admin123:admin123@cluster0.kcjwh.mongodb.net/thearchive?retryWrites=true&w=majority'; // DB URL
-mongoose.connect(myConnectionString, {useNewUrlParser: true}); // server connects to MongoDB using URL
+mongoose.connect(myConnectionString, { useNewUrlParser: true }); // server connects to MongoDB using URL
 
 const Schema = mongoose.Schema;
 
 var albumSchema = new Schema({ // schema for DB & info to be stored in DB
-    name:String,
-    artist:String,
-    image:String
+    name: String,
+    artist: String,
+    image: String,
+    url: String
 });
 
 var AlbumModel = mongoose.model("album", albumSchema); // Album collection
@@ -205,7 +206,7 @@ app.get('/api/albums', (req, res) => { // Root point/ localhost URL
     //     }
     // ];
 
-    AlbumModel.find((err, data)=>{ // finds all docs in DB
+    AlbumModel.find((err, data) => { // finds all docs in DB
         res.json(data);
     })
 
@@ -215,12 +216,24 @@ app.get('/api/albums', (req, res) => { // Root point/ localhost URL
     // });
 })
 
-app.get('/api/albums/:id', (req, res)=>{ // method listens for GET req for URL
+app.get('/api/albums/:id', (req, res) => { // method listens for GET req for URL
     console.log(req.params.id);
 
-    AlbumModel.findById(req.params.id, (err, data)=>{ // interacts with DB
+    AlbumModel.findById(req.params.id, (err, data) => { // interacts with DB
         res.json(data); // send it back to server
     })
+})
+
+app.put('/api/albums/:id', (req, res) => { // sends edited data to server
+    console.log("Update Album: " + req.params.id);
+    console.log(req.body);
+
+    // 'PUT' method overwrites field to edit
+    AlbumModel.findByIdAndUpdate(req.params.id, req.body, { new: true },
+        (err, data) => {
+            res.send(data);
+        })
+
 })
 
 app.post('/api/albums', (req, res) => { // Post request sends data to server (front-end)
@@ -228,11 +241,13 @@ app.post('/api/albums', (req, res) => { // Post request sends data to server (fr
     console.log(req.body.name);
     console.log(req.body.artist);
     console.log(req.body.image);
+    console.log(req.body.url);
 
     AlbumModel.create({ // saves docs to DB
-        name:req.body.name,
-        artist:req.body.artist,
-        image:req.body.image
+        name: req.body.name,
+        artist: req.body.artist,
+        image: req.body.image,
+        url: req.body.url
     })
     res.send('Album Added!') // alert msg / prevents adding album more than once
 })

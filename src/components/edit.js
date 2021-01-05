@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-export class Search extends React.Component {
+export class Edit extends React.Component {
 
     constructor() {
         super(); // envokes constructor of parent class (react.component)
@@ -18,6 +18,24 @@ export class Search extends React.Component {
             image: '',
             url: ''
         }
+    }
+
+    componentDidMount(){
+        console.log(this.props.match.params.id);
+
+        axios.get('http://localhost:4000/api/albums/'+this.props.match.params.id) // asynchronous call to server
+        .then(response =>{
+            this.setState({
+                _id:response.data._id,
+                name:response.data.name,
+                artist:response.data.artist,
+                image:response.data.image,
+                url:response.data.url
+            })
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
     }
 
     onChangeName(e) { // called when value of input changes
@@ -52,16 +70,25 @@ export class Search extends React.Component {
             name: this.state.name,
             artist: this.state.artist,
             image: this.state.image,
-            url: this.state.url
+            url: this.state.url,
+            _id: this.state._id
         }
-        
-        axios.post('http://localhost:4000/api/albums', newAlbum) //Post request from current URL & returns promise (asynchronous)
-        .then((res)=>{
-            console.log(res)
+
+        // edits record
+        axios.put('http://localhost:4000/api/albums/'+this.state._id, newAlbum)
+        .then(res =>{ // returns promise
+            console.log(res.data)
         })
-        .catch((err)=>{
-            console.log(err);
-        });
+        .catch();
+
+        
+        // axios.post('http://localhost:4000/api/albums', newAlbum) //Post request from current URL & returns promise (asynchronous)
+        // .then((res)=>{
+        //     console.log(res)
+        // })
+        // .catch((err)=>{
+        //     console.log(err);
+        // });
     }
 
     render() {
@@ -86,7 +113,7 @@ export class Search extends React.Component {
                         <input type='text' className='form-control' value={this.state.url} onChange={this.onChangeUrl}></input>
                     </div>
                     <div className="form-group">
-                        <input type='Submit' value='Add Album' className='btn btn-primary'></input>
+                        <input type='Submit' value='Edit Album' className='btn btn-primary'></input>
                     </div>
                 </form>
             </div>

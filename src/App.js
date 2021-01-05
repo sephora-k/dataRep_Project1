@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav } from 'react-bootstrap';
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { Edit } from './components/edit';
 
 class App extends Component {
   render() {
@@ -39,6 +40,7 @@ class App extends Component {
           <Route path='/library' component={Library} exact/>
           <Route path='/search' component={Search} exact/>
           <Route path='/article' component={Article} exact/>
+          <Route path='/edit/:id' component={Edit}></Route>
         </Switch>
       </div>
       </Router>

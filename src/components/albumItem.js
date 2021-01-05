@@ -1,6 +1,7 @@
 import React from 'react';
 import { CardDeck } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'; // import activates card component from bootstrap
+import {Link} from 'react-router-dom';  // changes URL of application & pass up info
 
 export class AlbumItem extends React.Component {
     render() {
@@ -20,6 +21,7 @@ export class AlbumItem extends React.Component {
                                 {this.props.album.url}
                             </Card.Footer>
                         </Card.Body>
+                        <Link to={"/edit/" + this.props.album._id} className="btn btn-primary">Edit</Link>
                     </Card>
                 </CardDeck>
                 <br />
