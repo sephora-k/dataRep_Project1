@@ -12,7 +12,7 @@ export class Library extends React.Component {
     componentDidMount() { // method is called every time component is mounted
         axios.get('http://localhost:4000/api/albums') // retrieve info from URL
             .then((response) => {
-                this.setState({ albums: response.data.albums }) // updates array in state (data from URL)
+                this.setState({ albums: response.data }) // updates array in state (data from URL)
             }) // successful promise
             .catch((error) => {
                 console.log(error)
