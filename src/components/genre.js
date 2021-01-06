@@ -12,7 +12,7 @@ export class Genre extends React.Component {
                 <br />
             <CardDeck>
                 <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={require("../images/albumArt2.jpg")} />
+                    <Card.Img variant="top" src={require("../images/albumArt1.jpg")} />
                     <Card.Body>
                         <Card.Title>1. POP</Card.Title>
                         <Card.Text>
@@ -38,7 +38,7 @@ export class Genre extends React.Component {
                 </Card>
 
                 <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={require("../images/albumArt2.jpg")} />
+                    <Card.Img variant="top" src={require("../images/albumArt3.jpg")} />
                     <Card.Body>
                         <Card.Title>3. Rock</Card.Title>
                         <Card.Text>
