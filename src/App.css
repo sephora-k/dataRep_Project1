@@ -31,9 +31,9 @@
   color: #61dafb;
 }
 
-.article {
+.image {
   position: relative; 
-  background-image: url('./images/albumArt.png');
+  background-image: url('./images/albumArt1.jpg');
   height: 100%;
   width: 100%;
   align-content: center;
