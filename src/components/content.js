@@ -24,7 +24,7 @@ export class Content extends React.Component {
                     </Container>
                 </Jumbotron>
                         <br/>
-                        <div className="image">
+                        <div className="image1">
                         <Image src={require("../images/albumArt.png")} fluid />
                         </div>
             </div>

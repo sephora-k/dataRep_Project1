@@ -39,6 +39,13 @@
   align-content: center;
 }
 
+.image1 {
+  position: relative; 
+  background-image: url('./images/albumArt.png');
+  height: 100%;
+  width: 100%;
+  align-content: center;
+}
 
 @keyframes App-logo-spin {
   from {
