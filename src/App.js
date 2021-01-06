@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import logo from './cd2.png';
 import './App.css';
-import { Header } from './components/header';
-import { Footer } from './components/footer';
 import { Content } from './components/content';
 import { Genre } from './components/genre';
 import { Library } from './components/library';
 import { Search } from './components/search';
 import { Article } from './components/article';
+import { Footer } from './components/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav } from 'react-bootstrap';
 

@@ -261,5 +261,5 @@ app.post('/api/albums', (req, res) => { // Post request sends data to server (fr
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://localhost:${port}/api/albums`) // redirects to album api
 })
