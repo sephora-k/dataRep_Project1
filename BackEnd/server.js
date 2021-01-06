@@ -236,6 +236,14 @@ app.put('/api/albums/:id', (req, res) => { // sends edited data to server
 
 })
 
+app.delete('/api/albums/:id', (req, res) =>{ // listens a HTTP request for a delete method
+    console.log("Delete Album: " + req.params.id); // prints 'id' from URL
+
+    AlbumModel.findByIdAndDelete(req.params.id, (err, data)=>{
+        res.send(data); // sends data back to server
+    })
+})
+
 app.post('/api/albums', (req, res) => { // Post request sends data to server (front-end)
     console.log('Album Added!'); // server is going to receive this data
     console.log(req.body.name);
